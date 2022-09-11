@@ -1,18 +1,19 @@
 import {React} from 'react'
 import ReactDOM from 'react-dom/client';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet'
+import MapWrapper from './containers/MapWrapper';
 
+const centerCoordinates = [54.684, 25.275];
+const mapZoom = 13;
+const tileLayerAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+const tileLayerSource = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const root = ReactDOM.createRoot(document.getElementById('map'));
+
 root.render(
-  <MapContainer center={[54.684, 25.275]} zoom={13}>
-  <TileLayer
-    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  <MapWrapper
+  centerCoordinates={centerCoordinates}
+  tileAttribution={tileLayerAttribution}
+  tileSource={tileLayerSource}
+  zoom={mapZoom}
   />
-  <Marker position={[54.684, 25.275]}>
-    <Popup>
-      A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
-  </Marker>
-</MapContainer>
 );
