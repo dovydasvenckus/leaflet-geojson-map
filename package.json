@@ -1,8 +1,9 @@
 {
   "name": "leaflet-geojson-map",
   "alias": {
+    "buffer": false,
     "process": false
- },
+  },
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
     "@types/leaflet": "1.7.11",
