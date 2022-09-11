@@ -2,12 +2,15 @@
   "name": "leaflet-geojson-map",
   "packageManager": "yarn@3.2.3",
   "devDependencies": {
-    "@types/leaflet": "^1.7.11",
+    "@types/leaflet": "1.7.11",
+    "buffer": "~6.0.3",
     "parcel": "~2.7.0",
     "process": "~0.11.10"
   },
   "dependencies": {
+    "axios": "~0.27.2",
     "leaflet": "~1.8.0",
+    "object-hash": "^3.0.0",
     "react": "~18.2.0",
     "react-dom": "~18.2.0",
     "react-leaflet": "~4.0.2"
