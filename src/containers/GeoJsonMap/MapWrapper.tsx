@@ -12,8 +12,15 @@ interface MapWrapperProps {
   zoom: number;
 }
 
-const customIcon = L.icon({
-  iconUrl: new URL("/src/images/hiking.png", import.meta.url).toString(),
+const typeIcons = new Map([
+  ["cafe", new URL('/src/assets/images/markers/cafe.png', import.meta.url)],
+  ["kebab", new URL('/src/assets/images/markers/kebab.png', import.meta.url)],
+  ["cognitive_trail", new URL('/src/assets/images/markers/cognitive_trail.png', import.meta.url)],
+  ["trail", new URL('/src/assets/images/markers/trail.png', import.meta.url)],
+])
+
+const createIcon = (name) =>  L.icon({
+  iconUrl: typeIcons.get(name)?.toString() || 'not-found',
 
   iconSize: [32, 37],
   iconAnchor: [16, 30],
@@ -22,7 +29,7 @@ const customIcon = L.icon({
 
 const mapMarkers = (feature) => {
   const marker = L.marker(feature.geometry.coordinates.reverse(), {
-    icon: customIcon,
+    icon: createIcon(feature.properties.type),
   });
 
   marker.bindPopup(
