@@ -16,6 +16,7 @@ root.render(
     tileAttribution={tileLayerAttribution}
     tileSource={tileLayerSource}
     zoom={mapZoom}
+    maxZoom={19}
     geoJsonSources={source}
   />
 );

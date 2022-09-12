@@ -10,6 +10,7 @@ interface MapWrapperProps {
   tileAttribution: string;
   tileSource: string;
   zoom: number;
+  maxZoom: number;
 }
 
 const typeIcons = new Map([
@@ -46,6 +47,7 @@ const GeoJsonMap: React.FC<MapWrapperProps> = ({
   tileAttribution,
   tileSource,
   zoom,
+  maxZoom,
 }) => {
   const [data, setData] = useState([]);
 
@@ -63,7 +65,7 @@ const GeoJsonMap: React.FC<MapWrapperProps> = ({
 
   return (
     <MapContainer center={centerCoordinates} zoom={zoom}>
-      <TileLayer attribution={tileAttribution} url={tileSource} />
+      <TileLayer attribution={tileAttribution} url={tileSource} maxZoom={maxZoom} />
       {data.map(geoJson => <GeoJSON key={hash(geoJson)} data={geoJson} pointToLayer={mapMarkers}/> )}
     </MapContainer>
   );
