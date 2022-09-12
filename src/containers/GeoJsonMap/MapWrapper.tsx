@@ -1,11 +1,11 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import GeoJsonApi from "../../api/geoJsonApi";
 import hash from "object-hash";
 import L from "leaflet";
 
 interface MapWrapperProps {
-  geoJsonSource: string;
+  geoJsonSources: string[];
   centerCoordinates: number[];
   tileAttribution: string;
   tileSource: string;
@@ -34,23 +34,30 @@ const mapMarkers = (feature) => {
 };
 
 const GeoJsonMap: React.FC<MapWrapperProps> = ({
-  geoJsonSource,
+  geoJsonSources,
   centerCoordinates,
   tileAttribution,
   tileSource,
   zoom,
 }) => {
-  const [data, setData] = useState(null);
-  if (!data) {
-    GeoJsonApi.getGeoJson(geoJsonSource).then((response) =>
-      setData(response.data)
-    );
-  }
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const loadAllGeoJsons = async () => {
+      const allGeoJsons = await Promise.all(
+        geoJsonSources.map(geoJsonUrl => GeoJsonApi.getGeoJson(geoJsonUrl))
+      )
+
+      setData(allGeoJsons.map(geoJsonResponse => geoJsonResponse.data))
+    }
+    
+    loadAllGeoJsons();
+  }, [geoJsonSources]);
 
   return (
     <MapContainer center={centerCoordinates} zoom={zoom}>
       <TileLayer attribution={tileAttribution} url={tileSource} />
-      <GeoJSON key={hash(data)} data={data} pointToLayer={mapMarkers} />
+      {data.map(geoJson => <GeoJSON key={hash(geoJson)} data={geoJson} pointToLayer={mapMarkers}/> )}
     </MapContainer>
   );
 };

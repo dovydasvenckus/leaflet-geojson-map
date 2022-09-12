@@ -8,7 +8,7 @@ const tileLayerAttribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const tileLayerSource = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const root = ReactDOM.createRoot(document.getElementById("map"));
-const source = `${process.env.SOURCE_URL}`;
+const source = process.env.SOURCE_URLS.split(" ");
 
 root.render(
   <GeoJsonMap
@@ -16,6 +16,6 @@ root.render(
     tileAttribution={tileLayerAttribution}
     tileSource={tileLayerSource}
     zoom={mapZoom}
-    geoJsonSource={source}
+    geoJsonSources={source}
   />
 );
