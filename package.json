@@ -9,7 +9,11 @@
     "@parcel/core": "~2.7.0",
     "@types/leaflet": "1.7.11",
     "buffer": "~6.0.3",
+    "husky": "~8.0.0",
+    "lint-staged": "^13.0.3",
     "parcel": "~2.7.0",
+    "pinst": "~3.0.0",
+    "prettier": "2.7.1",
     "process": "~0.11.10"
   },
   "dependencies": {
@@ -20,8 +24,14 @@
     "react-dom": "~18.2.0",
     "react-leaflet": "~4.0.2"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "scripts": {
+    "postinstall": "husky install",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
   }
 }

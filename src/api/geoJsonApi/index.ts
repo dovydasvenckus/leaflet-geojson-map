@@ -1,3 +1,3 @@
-import { getGeoJson } from './geoJsonApi'
+import { getGeoJson } from "./geoJsonApi";
 
-export default { getGeoJson }
+export default { getGeoJson };

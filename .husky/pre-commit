@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+./.yarn/releases/yarn-3.2.3.cjs run lint-staged
