@@ -1,9 +1,11 @@
 @import "npm:leaflet/dist/leaflet.css";
 
 body {
+  padding: 0;
   margin: 0;
 }
-.leaflet-container {
-  width: 100%;
-  height: 100vh;
+
+html, body, #map-wrapper, .leaflet-container {
+  height: 100%;
+  width: 100vw;
 }

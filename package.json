@@ -31,7 +31,7 @@
     "react-leaflet": "~4.0.2"
   },
   "lint-staged": {
-    "src/*": [
+    "src/*.{ts, tsx}": [
       "eslint --fix ",
       "prettier --write --ignore-unknown"
     ]
