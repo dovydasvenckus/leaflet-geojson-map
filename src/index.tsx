@@ -1,5 +1,6 @@
 import { React } from "react";
 import ReactDOM from "react-dom/client";
+import LocateMe from "./components/LocateMe";
 import GeoJsonMap from "./containers/GeoJsonMap";
 
 const centerCoordinates = [54.684, 25.075];
@@ -18,5 +19,7 @@ root.render(
     zoom={mapZoom}
     maxZoom={19}
     geoJsonSources={source}
-  />
+  >
+    <LocateMe maxLocateZoom={10}/>
+  </GeoJsonMap>
 );

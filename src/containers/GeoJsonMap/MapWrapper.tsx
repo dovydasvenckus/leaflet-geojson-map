@@ -42,6 +42,7 @@ const mapMarkers = (feature) => {
 };
 
 const GeoJsonMap: React.FC<MapWrapperProps> = ({
+  children,
   geoJsonSources,
   centerCoordinates,
   tileAttribution,
@@ -67,6 +68,7 @@ const GeoJsonMap: React.FC<MapWrapperProps> = ({
     <MapContainer center={centerCoordinates} zoom={zoom}>
       <TileLayer attribution={tileAttribution} url={tileSource} maxZoom={maxZoom} />
       {data.map(geoJson => <GeoJSON key={hash(geoJson)} data={geoJson} pointToLayer={mapMarkers}/> )}
+      {children}
     </MapContainer>
   );
 };
