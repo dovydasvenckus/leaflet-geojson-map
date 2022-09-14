@@ -9,7 +9,7 @@ const tileLayerAttribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const tileLayerSource = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const root = ReactDOM.createRoot(document.getElementById("map-wrapper"));
-const source = process.env.SOURCE_URLS.split(" ");
+const source = import.meta.env.VITE_SOURCE_URLS.split(" ");
 
 root.render(
   <GeoJsonMap
