@@ -13,8 +13,8 @@ interface MapWrapperProps {
   maxZoom: number;
 }
 
-const createIcon = (name) =>  L.icon({
-  iconUrl: `/images/markers/${name}.png`,
+const createIcon = ({type, visited}) =>  L.icon({
+  iconUrl: `/images/markers/${type}${!visited ? '-gray' : ''}.png`,
 
   iconSize: [32, 37],
   iconAnchor: [16, 30],
@@ -23,7 +23,7 @@ const createIcon = (name) =>  L.icon({
 
 const mapMarkers = (feature) => {
   const marker = L.marker(feature.geometry.coordinates.reverse(), {
-    icon: createIcon(feature.properties.type),
+    icon: createIcon(feature.properties),
   });
 
   marker.bindPopup(
