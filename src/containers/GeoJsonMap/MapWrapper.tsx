@@ -13,15 +13,8 @@ interface MapWrapperProps {
   maxZoom: number;
 }
 
-const typeIcons = new Map([
-  ["cafe", new URL('/src/assets/images/markers/cafe.png', import.meta.url)],
-  ["kebab", new URL('/src/assets/images/markers/kebab.png', import.meta.url)],
-  ["cognitive_trail", new URL('/src/assets/images/markers/cognitive_trail.png', import.meta.url)],
-  ["trail", new URL('/src/assets/images/markers/trail.png', import.meta.url)],
-])
-
 const createIcon = (name) =>  L.icon({
-  iconUrl: typeIcons.get(name)?.toString() || 'not-found',
+  iconUrl: `/images/markers/${name}.png`,
 
   iconSize: [32, 37],
   iconAnchor: [16, 30],
