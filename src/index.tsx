@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import LocateMe from "./components/LocateMe";
 import GeoJsonMap from "./containers/GeoJsonMap";
 
-const centerCoordinates = [54.684, 25.075];
-const mapZoom = 10;
+const source = import.meta.env.VITE_SOURCE_URLS.split(" ");
+const centerCoordinates = import.meta.env.VITE_CENTER_COORDINATES.split(
+  ","
+).map((c) => c as number);
+const mapZoom = import.meta.env.VITE_MAP_ZOOM as number;
+const shouldCenterOnClientLocation = import.meta.env.VITE_LOCATE_ME === "true";
 const tileLayerAttribution =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const tileLayerSource = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
 const root = ReactDOM.createRoot(document.getElementById("map-wrapper"));
-const source = import.meta.env.VITE_SOURCE_URLS.split(" ");
 
 root.render(
   <GeoJsonMap
@@ -20,6 +23,6 @@ root.render(
     maxZoom={19}
     geoJsonSources={source}
   >
-    <LocateMe maxLocateZoom={10}/>
+    {shouldCenterOnClientLocation && <LocateMe maxLocateZoom={10} />}
   </GeoJsonMap>
 );

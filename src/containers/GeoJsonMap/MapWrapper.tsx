@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import GeoJsonApi from "../../api/geoJsonApi";
 import hash from "object-hash";
@@ -13,13 +13,14 @@ interface MapWrapperProps {
   maxZoom: number;
 }
 
-const createIcon = ({type, visited}) =>  L.icon({
-  iconUrl: `/images/markers/${type}${!visited ? '-gray' : ''}.png`,
+const createIcon = ({ type, visited }) =>
+  L.icon({
+    iconUrl: `/images/markers/${type}${!visited ? "-gray" : ""}.png`,
 
-  iconSize: [32, 37],
-  iconAnchor: [16, 30],
-  popupAnchor: [0, -30],
-});
+    iconSize: [32, 37],
+    iconAnchor: [16, 30],
+    popupAnchor: [0, -30],
+  });
 
 const mapMarkers = (feature) => {
   const marker = L.marker(feature.geometry.coordinates.reverse(), {
@@ -48,19 +49,25 @@ const GeoJsonMap: React.FC<MapWrapperProps> = ({
   useEffect(() => {
     const loadAllGeoJsons = async () => {
       const allGeoJsons = await Promise.all(
-        geoJsonSources.map(geoJsonUrl => GeoJsonApi.getGeoJson(geoJsonUrl))
-      )
+        geoJsonSources.map((geoJsonUrl) => GeoJsonApi.getGeoJson(geoJsonUrl))
+      );
 
-      setData(allGeoJsons.map(geoJsonResponse => geoJsonResponse.data))
-    }
-    
+      setData(allGeoJsons.map((geoJsonResponse) => geoJsonResponse.data));
+    };
+
     loadAllGeoJsons();
   }, [geoJsonSources]);
 
   return (
     <MapContainer center={centerCoordinates} zoom={zoom}>
-      <TileLayer attribution={tileAttribution} url={tileSource} maxZoom={maxZoom} />
-      {data.map(geoJson => <GeoJSON key={hash(geoJson)} data={geoJson} pointToLayer={mapMarkers}/> )}
+      <TileLayer
+        attribution={tileAttribution}
+        url={tileSource}
+        maxZoom={maxZoom}
+      />
+      {data.map((geoJson) => (
+        <GeoJSON key={hash(geoJson)} data={geoJson} pointToLayer={mapMarkers} />
+      ))}
       {children}
     </MapContainer>
   );
