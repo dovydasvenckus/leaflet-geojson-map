@@ -34,8 +34,8 @@ const formatCoordinates = (geometry) => {
     .join(", ");
 
   return `coordinates: ${formatGeoUrl(coordinateLabel, {
-    latitude: coordinates[1],
-    longitude: coordinates[0],
+    latitude: coordinates[0],
+    longitude: coordinates[1],
   })}`;
 };
 
