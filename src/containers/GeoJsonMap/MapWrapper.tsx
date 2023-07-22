@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import GeoJsonApi from "../../api/geoJsonApi";
 import hash from "object-hash";
 import L from "leaflet";
+import Coordinate from "./Coordinate";
 
 interface MapWrapperProps {
   geoJsonSources: string[];
@@ -22,16 +23,33 @@ const createIcon = ({ type, visited }) =>
     popupAnchor: [0, -30],
   });
 
+const formatGeoUrl = (label: string, coordinate: Coordinate) => {
+  return `<a href="geo:${coordinate.latitude},${coordinate.longitude}">${label}</a>`;
+};
+
+const formatCoordinates = (geometry) => {
+  const { coordinates } = geometry;
+  const coordinateLabel = coordinates
+    .map((number) => number.toFixed(4))
+    .join(", ");
+
+  return `coordinates: ${formatGeoUrl(coordinateLabel, {
+    latitude: coordinates[1],
+    longitude: coordinates[0],
+  })}`;
+};
+
 const mapMarkers = (feature) => {
   const marker = L.marker(feature.geometry.coordinates.reverse(), {
     icon: createIcon(feature.properties),
   });
 
-  marker.bindPopup(
-    Object.entries(feature.properties)
-      .map((keyValuePair) => `${keyValuePair[0]}: ${keyValuePair[1]}`)
-      .join("<br>")
+  const coordinatesLine = formatCoordinates(feature.geometry);
+  const metaDataLines = Object.entries(feature.properties).map(
+    (keyValuePair) => `${keyValuePair[0]}: ${keyValuePair[1]}`
   );
+
+  marker.bindPopup([coordinatesLine, ...metaDataLines].join("<br>"));
   return marker;
 };
 
