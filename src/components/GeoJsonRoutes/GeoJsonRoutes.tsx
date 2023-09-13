@@ -35,6 +35,7 @@ const GeoJsonRoutes: React.FC<GeoJsonRoutesProps> = ({ sourceFiles }) => {
       );
       L.Routing.control({
         waypoints,
+        createMarker: () => null,
         draggableWaypoints: false,
         addWaypoints: false,
         show: false,
