@@ -12,7 +12,6 @@ interface GeoJsonRoutesProps {
 const GeoJsonRoutes: React.FC<GeoJsonRoutesProps> = ({ sourceFiles }) => {
   const map = useMap();
   const [data, setData] = useState([]);
-  console.log(data);
 
   useEffect(() => {
     const loadAllGeoJsons = async () => {
