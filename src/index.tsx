@@ -1,9 +1,11 @@
 import { React } from "react";
 import ReactDOM from "react-dom/client";
+import GeoJsonRoutes from "./components/GeoJsonRoutes";
 import LocateMe from "./components/LocateMe";
 import GeoJsonMap from "./containers/GeoJsonMap";
 
-const source = import.meta.env.VITE_SOURCE_URLS.split(" ");
+const pointOfInterestSources = import.meta.env.VITE_SOURCE_URLS.split(" ");
+const routeSources = import.meta.env.VITE_ROUTE_URLS?.split(" ") || [];
 const centerCoordinates = import.meta.env.VITE_CENTER_COORDINATES.split(
   ","
 ).map((c) => c as number);
@@ -21,8 +23,9 @@ root.render(
     tileSource={tileLayerSource}
     zoom={mapZoom}
     maxZoom={19}
-    geoJsonSources={source}
+    geoJsonSources={pointOfInterestSources}
   >
     {shouldCenterOnClientLocation && <LocateMe maxLocateZoom={10} />}
+    <GeoJsonRoutes sourceFiles={routeSources} />
   </GeoJsonMap>
 );
