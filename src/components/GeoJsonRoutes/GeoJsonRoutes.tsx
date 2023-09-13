@@ -26,20 +26,21 @@ const GeoJsonRoutes: React.FC<GeoJsonRoutesProps> = ({ sourceFiles }) => {
     loadAllGeoJsons();
   }, [sourceFiles]);
 
-  data.forEach((route) => {
-    const { geometry } = route;
-    const { coordinates } = geometry;
-    const waypoints = coordinates.map(([longitude, latitude]) =>
-      createWaypoint(longitude, latitude)
-    );
-    L.Routing.control({
-      waypoints,
-      draggableWaypoints: false,
-      addWaypoints: false,
-      show: false,
-      fitSelectedRoutes: false,
-    }).addTo(map);
-  });
+  map &&
+    data.forEach((route) => {
+      const { geometry } = route;
+      const { coordinates } = geometry;
+      const waypoints = coordinates.map(([longitude, latitude]) =>
+        createWaypoint(longitude, latitude)
+      );
+      L.Routing.control({
+        waypoints,
+        draggableWaypoints: false,
+        addWaypoints: false,
+        show: false,
+        fitSelectedRoutes: false,
+      }).addTo(map);
+    });
 
   return null;
 };
