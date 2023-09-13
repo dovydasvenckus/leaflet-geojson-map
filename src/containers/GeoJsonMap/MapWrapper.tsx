@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactNode } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
 import GeoJsonApi from "../../api/geoJsonApi";
 import hash from "object-hash";
@@ -6,6 +6,7 @@ import L from "leaflet";
 import Coordinate from "./Coordinate";
 
 interface MapWrapperProps {
+  children?: ReactNode[];
   geoJsonSources: string[];
   centerCoordinates: number[];
   tileAttribution: string;

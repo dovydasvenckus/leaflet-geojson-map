@@ -525,12 +525,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/leaflet-routing-machine@npm:^3.2.4":
-  version: 3.2.4
-  resolution: "@types/leaflet-routing-machine@npm:3.2.4"
+"@types/leaflet-routing-machine@npm:3.2.5":
+  version: 3.2.5
+  resolution: "@types/leaflet-routing-machine@npm:3.2.5"
   dependencies:
     "@types/leaflet": "*"
-  checksum: 5704420de37155cb99f5c552f0aa129b5fe5ca5ed946ab036e3ff7f86d5461a2caea3398545d8f9fd2765f8c7fc7ce9099801f3150549b759353ab81c8610812
+  checksum: 0d6c04767ec9138c7e86b1839ec1cfaec0b62a9ddfd053ad21871a24dcb418dfdfea0f8040fa611df2c09955b076df10d552b105b27eb839efb9c7dc9e51780d
   languageName: node
   linkType: hard
 
@@ -540,15 +540,6 @@ __metadata:
   dependencies:
     "@types/geojson": "*"
   checksum: d12042edc3a043d074b4fd3b4c4800f479dfb01db3980d8c1151edbc70b23ca9e84ab7da72ce0d1c36c040f89ba1421bd36d9d9796ec3704a0d3c942985a87ae
-  languageName: node
-  linkType: hard
-
-"@types/leaflet@npm:1.9.4":
-  version: 1.9.4
-  resolution: "@types/leaflet@npm:1.9.4"
-  dependencies:
-    "@types/geojson": "*"
-  checksum: ae5b4422b6eb912e6c6910d049f63cb96537eac46af4a897471ab98c642d059a32789f411157b873a5dafdbc9cef3399dc0673c5f64be067eebc530c43783e75
   languageName: node
   linkType: hard
 
@@ -2246,8 +2237,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "leaflet-geojson-map@workspace:."
   dependencies:
-    "@types/leaflet": 1.9.4
-    "@types/leaflet-routing-machine": ^3.2.4
+    "@types/leaflet-routing-machine": 3.2.5
     "@types/react": 18.2.0
     "@types/react-dom": 18.2.0
     "@typescript-eslint/eslint-plugin": ~5.37.0
