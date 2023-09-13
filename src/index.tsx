@@ -5,7 +5,7 @@ import LocateMe from "./components/LocateMe";
 import GeoJsonMap from "./containers/GeoJsonMap";
 
 const pointOfInterestSources = import.meta.env.VITE_SOURCE_URLS.split(" ");
-const routeSources = import.meta.env.VITE_ROUTE_URLS.split(" ");
+const routeSources = import.meta.env.VITE_ROUTE_URLS?.split(" ") || [];
 const centerCoordinates = import.meta.env.VITE_CENTER_COORDINATES.split(
   ","
 ).map((c) => c as number);
